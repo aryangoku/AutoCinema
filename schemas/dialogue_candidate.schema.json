@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "utterance": {
+      "type": "string",
+      "maxLength": 400
+    },
+    "emotion": {
+      "enum": [
+        "neutral",
+        "happy",
+        "sad",
+        "angry",
+        "afraid",
+        "evasive",
+        "surprised"
+      ]
+    },
+    "suggested_speech_act": {
+      "enum": [
+        "GREETING",
+        "SMALL_TALK",
+        "QUESTION",
+        "DENY",
+        "REVEAL",
+        "LIE",
+        "REQUEST",
+        "BARGAIN",
+        "THREAT_RESPONSE",
+        "EVIDENCE_CONFRONTATION",
+        "GOODBYE"
+      ]
+    },
+    "referenced_fact_ids": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true
+    }
+  },
+  "required": [
+    "utterance",
+    "emotion",
+    "suggested_speech_act",
+    "referenced_fact_ids"
+  ],
+  "title": "Dialogue phrasing candidate v1"
+}

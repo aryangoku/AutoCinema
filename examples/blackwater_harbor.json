@@ -1,0 +1,455 @@
+{
+  "schema_version": "1.0.0",
+  "world_id": "world_blackwater_harbor",
+  "seed": 1042,
+  "title": "Blackwater Harbor: The Keeper’s Light",
+  "logline": "A detective investigates a lighthouse glowing twenty years after its keeper vanished.",
+  "genre": "mystery",
+  "template": "coastal_mystery",
+  "truth": {
+    "summary": "The keeper staged his disappearance after discovering smuggling and later returned for a hidden ledger; Elena helped him hide.",
+    "antagonist_or_secret": "Elena knows the keeper survived and helped him disappear.",
+    "timeline": [
+      "Year -20: Keeper vanishes after discovering smuggling",
+      "Year -20 + 3 days: A ship departs the harbor",
+      "Present: New cable installed at lighthouse",
+      "Present: Detective investigates"
+    ],
+    "secret_fact_ids": [
+      "fact_elena_helped",
+      "fact_keeper_planned_escape"
+    ]
+  },
+  "start_location": "loc_harbor",
+  "locations": [
+    {
+      "id": "loc_harbor",
+      "name": "Old Harbor",
+      "prefab_id": "scene_harbor",
+      "description": "Foggy docks and a shipping office",
+      "exits": [
+        {
+          "to_location_id": "loc_tavern",
+          "door_id": null
+        },
+        {
+          "to_location_id": "loc_lighthouse_ext",
+          "door_id": null
+        },
+        {
+          "to_location_id": "loc_archive",
+          "door_id": null
+        }
+      ]
+    },
+    {
+      "id": "loc_tavern",
+      "name": "The Salt Lantern Tavern",
+      "prefab_id": "scene_tavern",
+      "description": "Warm tavern with private old secrets",
+      "exits": [
+        {
+          "to_location_id": "loc_harbor",
+          "door_id": null
+        }
+      ]
+    },
+    {
+      "id": "loc_lighthouse_ext",
+      "name": "Lighthouse Grounds",
+      "prefab_id": "scene_lighthouse_ext",
+      "description": "Cliffside grounds and a locked stone door",
+      "exits": [
+        {
+          "to_location_id": "loc_harbor",
+          "door_id": null
+        },
+        {
+          "to_location_id": "loc_lighthouse_int",
+          "door_id": "door_lighthouse"
+        }
+      ]
+    },
+    {
+      "id": "loc_lighthouse_int",
+      "name": "Lighthouse Interior",
+      "prefab_id": "scene_lighthouse_int",
+      "description": "A quiet lamp room with a hidden journal",
+      "exits": [
+        {
+          "to_location_id": "loc_lighthouse_ext",
+          "door_id": "door_lighthouse"
+        }
+      ]
+    },
+    {
+      "id": "loc_archive",
+      "name": "Town Archive",
+      "prefab_id": "scene_archive",
+      "description": "Quiet library of shipping and civic records",
+      "exits": [
+        {
+          "to_location_id": "loc_harbor",
+          "door_id": null
+        }
+      ]
+    }
+  ],
+  "doors": [
+    {
+      "id": "door_lighthouse",
+      "location_a": "loc_lighthouse_ext",
+      "location_b": "loc_lighthouse_int",
+      "initial_state": "locked"
+    }
+  ],
+  "characters": [
+    {
+      "id": "npc_elena",
+      "name": "Elena",
+      "prefab_id": "npc_innkeeper",
+      "start_location": "loc_tavern",
+      "public_role": "Innkeeper",
+      "private_goal": "Protect the keeper without endangering townspeople",
+      "initial_known_fact_ids": [
+        "fact_keeper_planned_escape",
+        "fact_elena_helped"
+      ],
+      "secret_fact_ids": [
+        "fact_elena_helped"
+      ],
+      "dialogue_fallback": "The lighthouse has been abandoned for years."
+    },
+    {
+      "id": "npc_marcus",
+      "name": "Marcus",
+      "prefab_id": "npc_dockhand",
+      "start_location": "loc_harbor",
+      "public_role": "Dockhand",
+      "private_goal": "Keep trade running",
+      "initial_known_fact_ids": [
+        "fact_manifest_after_disappearance"
+      ],
+      "secret_fact_ids": [],
+      "dialogue_fallback": "The ledger might tell you more than I can."
+    },
+    {
+      "id": "npc_ada",
+      "name": "Ada",
+      "prefab_id": "npc_archivist",
+      "start_location": "loc_archive",
+      "public_role": "Archivist",
+      "private_goal": "Preserve the town records",
+      "initial_known_fact_ids": [
+        "fact_keeper_timeline"
+      ],
+      "secret_fact_ids": [],
+      "dialogue_fallback": "The old harbor records are open to researchers."
+    }
+  ],
+  "items": [
+    {
+      "id": "item_manifest",
+      "name": "Shipping Manifest",
+      "prefab_id": "prop_manifest",
+      "initial_location": "loc_harbor",
+      "portable": false,
+      "description": "A shipping record dated after the reported disappearance"
+    },
+    {
+      "id": "item_key",
+      "name": "Rusty Iron Key",
+      "prefab_id": "prop_iron_key",
+      "initial_location": "loc_tavern",
+      "portable": true,
+      "description": "Key to the locked lighthouse door"
+    },
+    {
+      "id": "item_cable",
+      "name": "New Power Cable",
+      "prefab_id": "prop_power_cable",
+      "initial_location": "loc_lighthouse_ext",
+      "portable": false,
+      "description": "Fresh wiring recently installed"
+    },
+    {
+      "id": "item_journal",
+      "name": "Keeper Journal",
+      "prefab_id": "prop_journal",
+      "initial_location": "loc_lighthouse_int",
+      "portable": false,
+      "description": "Journal describing a planned escape"
+    },
+    {
+      "id": "item_archive_note",
+      "name": "Archive Note",
+      "prefab_id": "prop_archive_note",
+      "initial_location": "loc_archive",
+      "portable": false,
+      "description": "A record of the disappearance"
+    }
+  ],
+  "facts": [
+    {
+      "id": "fact_manifest_after_disappearance",
+      "text": "A ship left harbor after the reported disappearance",
+      "hidden_until_discovered": true
+    },
+    {
+      "id": "fact_recent_maintenance",
+      "text": "The lighthouse has been serviced recently",
+      "hidden_until_discovered": true
+    },
+    {
+      "id": "fact_keeper_planned_escape",
+      "text": "The keeper planned to leave deliberately",
+      "hidden_until_discovered": true
+    },
+    {
+      "id": "fact_elena_helped",
+      "text": "Elena helped the keeper disappear",
+      "hidden_until_discovered": true
+    },
+    {
+      "id": "fact_keeper_timeline",
+      "text": "Public reports date the disappearance twenty years ago",
+      "hidden_until_discovered": true
+    }
+  ],
+  "actions": [
+    {
+      "id": "act_read_manifest",
+      "label": "Inspect shipping manifest",
+      "verb": "inspect",
+      "location_id": "loc_harbor",
+      "target_id": "item_manifest",
+      "preconditions": [],
+      "effects": [
+        {
+          "type": "learn_fact",
+          "ref": "fact_manifest_after_disappearance"
+        }
+      ]
+    },
+    {
+      "id": "act_inspect_cable",
+      "label": "Inspect newly installed cable",
+      "verb": "inspect",
+      "location_id": "loc_lighthouse_ext",
+      "target_id": "item_cable",
+      "preconditions": [],
+      "effects": [
+        {
+          "type": "learn_fact",
+          "ref": "fact_recent_maintenance"
+        }
+      ]
+    },
+    {
+      "id": "act_take_key",
+      "label": "Take the rusty key",
+      "verb": "take",
+      "location_id": "loc_tavern",
+      "target_id": "item_key",
+      "preconditions": [],
+      "effects": [
+        {
+          "type": "take_item",
+          "ref": "item_key"
+        }
+      ]
+    },
+    {
+      "id": "act_unlock_lighthouse",
+      "label": "Unlock the lighthouse",
+      "verb": "unlock",
+      "location_id": "loc_lighthouse_ext",
+      "target_id": "door_lighthouse",
+      "preconditions": [
+        {
+          "type": "has_item",
+          "ref": "item_key"
+        }
+      ],
+      "effects": [
+        {
+          "type": "unlock_door",
+          "ref": "door_lighthouse"
+        }
+      ]
+    },
+    {
+      "id": "act_read_journal",
+      "label": "Read keeper journal",
+      "verb": "read",
+      "location_id": "loc_lighthouse_int",
+      "target_id": "item_journal",
+      "preconditions": [],
+      "effects": [
+        {
+          "type": "learn_fact",
+          "ref": "fact_keeper_planned_escape"
+        }
+      ]
+    },
+    {
+      "id": "act_read_archive",
+      "label": "Read disappearance archive",
+      "verb": "read",
+      "location_id": "loc_archive",
+      "target_id": "item_archive_note",
+      "preconditions": [],
+      "effects": [
+        {
+          "type": "learn_fact",
+          "ref": "fact_keeper_timeline"
+        }
+      ]
+    },
+    {
+      "id": "act_confront_elena",
+      "label": "Present evidence to Elena",
+      "verb": "present",
+      "location_id": "loc_tavern",
+      "target_id": "npc_elena",
+      "preconditions": [
+        {
+          "type": "knows_fact",
+          "ref": "fact_manifest_after_disappearance"
+        },
+        {
+          "type": "knows_fact",
+          "ref": "fact_recent_maintenance"
+        },
+        {
+          "type": "knows_fact",
+          "ref": "fact_keeper_planned_escape"
+        }
+      ],
+      "effects": [
+        {
+          "type": "set_flag",
+          "ref": "flag_elena_confronted"
+        },
+        {
+          "type": "learn_fact",
+          "ref": "fact_elena_helped"
+        }
+      ]
+    },
+    {
+      "id": "act_finish_truth",
+      "label": "Reveal the truth",
+      "verb": "finish",
+      "location_id": "loc_tavern",
+      "target_id": "npc_elena",
+      "preconditions": [
+        {
+          "type": "flag_true",
+          "ref": "flag_elena_confronted"
+        },
+        {
+          "type": "knows_fact",
+          "ref": "fact_elena_helped"
+        }
+      ],
+      "effects": [
+        {
+          "type": "trigger_ending",
+          "ref": "ending_truth"
+        }
+      ]
+    },
+    {
+      "id": "act_leave_town",
+      "label": "Leave without solving mystery",
+      "verb": "leave",
+      "location_id": "loc_harbor",
+      "target_id": "loc_harbor",
+      "preconditions": [],
+      "effects": [
+        {
+          "type": "trigger_ending",
+          "ref": "ending_unresolved"
+        }
+      ]
+    }
+  ],
+  "endings": [
+    {
+      "id": "ending_truth",
+      "name": "The Keeper Survived",
+      "summary": "The detective uncovers the keeper’s staged disappearance and Elena’s assistance.",
+      "requires": [
+        {
+          "type": "flag_true",
+          "ref": "flag_elena_confronted"
+        },
+        {
+          "type": "knows_fact",
+          "ref": "fact_elena_helped"
+        }
+      ]
+    },
+    {
+      "id": "ending_unresolved",
+      "name": "The Harbor Keeps Its Secret",
+      "summary": "The detective leaves before uncovering the truth.",
+      "requires": []
+    }
+  ],
+  "asset_manifest": [
+    {
+      "asset_id": "scene_harbor",
+      "kind": "location"
+    },
+    {
+      "asset_id": "scene_tavern",
+      "kind": "location"
+    },
+    {
+      "asset_id": "scene_lighthouse_ext",
+      "kind": "location"
+    },
+    {
+      "asset_id": "scene_lighthouse_int",
+      "kind": "location"
+    },
+    {
+      "asset_id": "scene_archive",
+      "kind": "location"
+    },
+    {
+      "asset_id": "npc_innkeeper",
+      "kind": "npc"
+    },
+    {
+      "asset_id": "npc_dockhand",
+      "kind": "npc"
+    },
+    {
+      "asset_id": "npc_archivist",
+      "kind": "npc"
+    },
+    {
+      "asset_id": "prop_manifest",
+      "kind": "prop"
+    },
+    {
+      "asset_id": "prop_iron_key",
+      "kind": "prop"
+    },
+    {
+      "asset_id": "prop_power_cable",
+      "kind": "prop"
+    },
+    {
+      "asset_id": "prop_journal",
+      "kind": "prop"
+    },
+    {
+      "asset_id": "prop_archive_note",
+      "kind": "prop"
+    }
+  ]
+}

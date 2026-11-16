@@ -1,0 +1,62 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "world_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "world_schema_version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "world_hash_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "compiler_version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "asset_catalog_version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "build_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "generated_at": {
+      "type": "string"
+    },
+    "required_asset_ids": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true
+    },
+    "test_report_file": {
+      "type": "string",
+      "minLength": 1
+    },
+    "creator_report_file": {
+      "type": "string",
+      "minLength": 1
+    }
+  },
+  "required": [
+    "world_id",
+    "world_schema_version",
+    "world_hash_sha256",
+    "compiler_version",
+    "asset_catalog_version",
+    "build_id",
+    "generated_at",
+    "required_asset_ids",
+    "test_report_file"
+  ],
+  "title": "Immutable world build manifest v1"
+}

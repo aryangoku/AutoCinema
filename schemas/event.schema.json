@@ -1,0 +1,73 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "event_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "seq": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "session_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "command_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "actor_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "action_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "entity_ids": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "sim_time_minutes": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "state_diff": {
+      "type": "object"
+    },
+    "world_schema_version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "state_hash_after": {
+      "type": "string",
+      "minLength": 1
+    },
+    "rng_state_before": {
+      "type": "string"
+    },
+    "rng_state_after": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "event_id",
+    "seq",
+    "session_id",
+    "command_id",
+    "actor_id",
+    "action_id",
+    "entity_ids",
+    "sim_time_minutes",
+    "state_diff",
+    "world_schema_version",
+    "state_hash_after"
+  ],
+  "title": "Authoritative event record v1"
+}
