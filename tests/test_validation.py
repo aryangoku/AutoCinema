@@ -190,4 +190,4 @@ def test_health():
 
     response = asyncio.run(request())
     assert response.status_code == 200
-    assert response.json() == {"status": "ok", "version": "0.1.0", "milestone": 0}
+    assert response.json() == {"status": "ok", "version": "0.2.0", "milestone": 1}

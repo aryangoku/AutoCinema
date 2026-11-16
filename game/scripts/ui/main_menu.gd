@@ -35,10 +35,10 @@ func _ready() -> void:
 	quit_button.custom_minimum_size = Vector2(100, 52)
 	quit_button.pressed.connect(func() -> void: get_tree().quit())
 	buttons.add_child(quit_button)
-	status_label = add_label(column, "MILESTONE 0  /  Menu and world contracts. Gameplay is not available yet.", 16, Color("a6b5bd"))
+	status_label = add_label(column, "MILESTONE 1  /  Console mystery ready. 3D exploration is next.", 16, Color("a6b5bd"))
 	details = AcceptDialog.new()
 	details.title = "Blackwater Harbor - reference world"
-	details.dialog_text = "Five locations. Three characters. A mystery built around evidence.\n\nThe reference JSON can be validated with the Python tools.\nPlayable exploration arrives after the Reality Engine foundation."
+	details.dialog_text = "Five locations. Three characters. A mystery built around evidence.\n\nPlay the offline console mystery: python tools/dev.py play\nThe 3D game world is the next milestone."
 	add_child(details)
 	example_button.grab_focus()
 

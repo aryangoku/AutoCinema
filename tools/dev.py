@@ -28,7 +28,18 @@ def godot() -> str:
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument(
-        "command", choices=["test", "check", "format", "validate", "api", "game", "godot-test"]
+        "command",
+        choices=[
+            "test",
+            "check",
+            "format",
+            "validate",
+            "api",
+            "game",
+            "godot-test",
+            "play",
+            "demo",
+        ],
     )
     args = parser.parse_args()
     if args.command == "format":
@@ -56,6 +67,11 @@ def main() -> None:
             "--port",
             "8000",
         )
+    elif args.command == "play":
+        run(sys.executable, "tools/play_console.py")
+    elif args.command == "demo":
+        run(sys.executable, "tools/play_console.py", "--demo", "truth")
+        run(sys.executable, "tools/play_console.py", "--demo", "unresolved")
     elif args.command == "game":
         run(godot(), "--path", "game")
     else:
